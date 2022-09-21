@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "OSD-HR-Management-Backend": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "https://localhost:3001/swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:3001"
+    }
+  }
+}
