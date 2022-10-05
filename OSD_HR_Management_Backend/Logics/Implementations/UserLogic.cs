@@ -3,6 +3,7 @@ using OSD_HR_Management_Backend.Logics.Abstractions;
 using OSD_HR_Management_Backend.Logics.Helpers;
 using OSD_HR_Management_Backend.Repositories.Abstractions;
 using OSD_HR_Management_Backend.Repositories.Models;
+using OSD_HR_Management_Backend.ResponseModels;
 
 namespace OSD_HR_Management_Backend.Logics.Implementations;
 
@@ -34,5 +35,29 @@ public class UserLogic : IUserLogic
     public async Task<IEnumerable<UserModel>> GetAllUsers()
     {
         return await _userRepository.GetAllUsers();
+    }
+
+    public async Task<IEnumerable<GetUserResponseModel>> GetUsersPortal()
+    {
+        var usersResponse = new List<GetUserResponseModel>();
+
+        var users = await _userRepository.GetAllUsers();
+
+        foreach (var user in users)
+        {
+            var userResponse = _mapper.Map<UserModel, GetUserResponseModel>(user);
+            usersResponse.Add(userResponse);
+        }
+
+        return usersResponse;
+    }
+
+    public async Task<GetUserResponseModel> GetUserById(string userId)
+    {
+        var user = await _userRepository.GetUserById(userId);
+
+        var userResponse = _mapper.Map<UserModel, GetUserResponseModel>(user);
+
+        return userResponse;
     }
 }

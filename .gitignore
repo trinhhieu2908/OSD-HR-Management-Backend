@@ -1,5 +1,11 @@
-/OSD_HR_Management_Backend/bin/
-/OSD_HR_Management_Backend/obj/
 /.idea/
 /.vs/
 /OSD_HR_Management_Backend/.vs/
+/OSD_HR_Management_Backend/bin/
+/OSD_HR_Management_Backend/obj/
+
+/OSD-HR-Management-Backend/.vs/
+/OSD-HR-Management-Backend/bin/
+/OSD-HR-Management-Backend/obj/
+/*/.idea/
+

@@ -21,4 +21,9 @@ public class UserRepository : HashKeyOnlyRepositoryBase<UserModel, string>, IUse
     {
         return await GetList();
     }
+
+    public async Task<UserModel> GetUserById(string userId)
+    {
+        return await GetByHashKey(userId);
+    }
 }

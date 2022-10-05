@@ -1,5 +1,7 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 
+#nullable disable
+
 namespace OSD_HR_Management_Backend.Repositories.Models;
 
 [DynamoDBTable("users")]
@@ -26,7 +28,7 @@ public class UserModel
     [DynamoDBProperty("createAt")]
     public DateTime CreateAt { get; set; }
 
-/*    [DynamoDBProperty("jobTitle")]
+    [DynamoDBProperty("jobTitle")]
     public string JobTitle { get; set; }
 
     [DynamoDBProperty("email")]
@@ -36,11 +38,8 @@ public class UserModel
     public string FullName { get; set; }
 
     [DynamoDBProperty("phoneNumber")]
-    public string PhoneNumber { get; set; } = null!;
+    public string PhoneNumber { get; set; } = string.Empty;
 
     [DynamoDBProperty("skype")]
-    public string Skype { get; set; } = null!;
-
-    [DynamoDBProperty("salary")]
-    public ulong Salary { get; set; } = 0;*/
+    public string Skype { get; set; } = string.Empty;
 }

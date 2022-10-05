@@ -10,6 +10,7 @@ using Amazon.S3;
 using OSD_HR_Management_Backend.Middlewares;
 using Microsoft.AspNetCore.Authorization;
 using OSD_HR_Management_Backend.Constants;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace OSD_HR_Management_Backend;
 
@@ -35,6 +36,12 @@ public class Startup
         services.AddCors();
 
         services.AddControllers();
+
+        services.Configure<FormOptions>(options =>
+        {
+            // Set the limit file to 5 MB
+            options.MultipartBodyLengthLimit = 5000000;
+        });
 
         services.AddAuthentication(options =>
             {
@@ -62,7 +69,8 @@ public class Startup
                 policy => policy.Requirements.Add(new AdminPermission()));
         });
 
-        services.AddSingleton<IAuthorizationHandler, AdminPermissionHandler>();
+        services.AddTransient<IAuthorizationHandler, AdminPermissionHandler>();
+        /*services.AddSingleton<IAuthorizationHandler, AdminPermissionHandler>();        */
 
         services.AddAWSService<IAmazonS3>();
 
@@ -79,15 +87,15 @@ public class Startup
     {
         if (env.IsDevelopment())
         {
-            app.UseDeveloperExceptionPage();
+            app.UseDeveloperExceptionPage();            
+        }
 
-            app.UseSwagger();
+        app.UseSwagger();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OSD API V1");
-            });
-        }        
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "OSD API V1");
+        });
 
         app.UseHttpsRedirection();
 
