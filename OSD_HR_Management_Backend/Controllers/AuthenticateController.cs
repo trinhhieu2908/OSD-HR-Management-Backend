@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Amazon.Runtime;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OSD_HR_Management_Backend.Constants;
@@ -10,6 +12,7 @@ using OSD_HR_Management_Backend.Services.Abstractions;
 using OSD_HR_Management_Backend.Services.Implementations;
 using OSD_HR_Management_Backend.Services.Models;
 using System.IdentityModel.Tokens.Jwt;
+using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 using System.Text;
 
@@ -50,7 +53,7 @@ public class AuthenticateController : Controller
         {
             new(ClaimTypes.Name, requestModel.Username),
             new(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            new("Role", existingUser.Role)
+            new("UserId", existingUser.UserId)
         };
 
         var authSigninKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
@@ -64,7 +67,7 @@ public class AuthenticateController : Controller
 
         return Ok(new
         {
-            token = "Bearer " + new JwtSecurityTokenHandler().WriteToken(token),
+            token = new JwtSecurityTokenHandler().WriteToken(token),
             expiration = token.ValidTo
         });
     }
@@ -73,21 +76,40 @@ public class AuthenticateController : Controller
     [HttpPost]
     [Route("register")]
     public async Task<IActionResult> Register([FromForm] RegisterRequestModel requestModel)
-    {       
-        var objUpload = new S3ObjectUpload(requestModel.Avatar!, "osd-hr-management", "public/image");
-        var avatarPath = await _storeService.UploadFileAsync(objUpload);
+    {
+        var avatarPath = string.Empty;
+        if (requestModel.Avatar != null)
+        {
+            var objUpload = new S3ObjectUpload(requestModel.Avatar, "osd-hr-management", "public/image");
+            avatarPath = await _storeService.UploadFileAsync(objUpload);
+        }
 
         var registered = await _userLogic.SaveUser(requestModel, avatarPath);
         return Ok(registered);
     }
 
+    [Authorize]
     [HttpGet]
     [Route("users")]
-    public async Task<IActionResult> GetAllUser()
+    public async Task<IActionResult> GetUsersPortal()
     {
-        var result = await _userLogic.GetAllUsers();
+        var result = await _userLogic.GetUsersPortal();
         Console.WriteLine(result);
 
         return Ok(result);
+    }
+
+    [Authorize]
+    [HttpGet]
+    [Route("decode-token")]
+    public async Task<IActionResult> DecodeToken([FromHeader] string jwtToken)
+    {
+        var jwt = new JwtSecurityTokenHandler().ReadJwtToken(jwtToken);
+
+        var userId = jwt.Claims.First(c => c.Type == "UserId").Value;
+
+        var user = await _userLogic.GetUserById(userId);
+
+        return Ok(user);
     }
 }
