@@ -23,10 +23,7 @@ public class UserModel
     public string Role { get; set; } = "Employee";
 
     [DynamoDBProperty("isActive")]
-    public Boolean IsActive { get; set; } = true;
-
-    [DynamoDBProperty("createAt")]
-    public DateTime CreateAt { get; set; }
+    public Boolean IsActive { get; set; }    
 
     [DynamoDBProperty("jobTitle")]
     public string JobTitle { get; set; }
@@ -42,4 +39,10 @@ public class UserModel
 
     [DynamoDBProperty("skype")]
     public string Skype { get; set; } = string.Empty;
+
+    [DynamoDBProperty("createAt")]
+    public DateTime CreateAt { get; set; }
+
+    [DynamoDBProperty("updateAt")]
+    public DateTime UpdateAt { get; set; }
 }

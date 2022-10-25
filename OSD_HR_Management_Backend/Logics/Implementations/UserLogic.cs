@@ -22,10 +22,12 @@ public class UserLogic : IUserLogic
     {
         var user = _mapper.Map<RegisterRequestModel, UserModel>(requestModel);
 
-        user.UserId = Guid.NewGuid().ToString();
-        user.CreateAt = DateTime.Now;
+        user.UserId = Guid.NewGuid().ToString();        
         user.Password = EncodingHelper.EncodePasswordToBase64(requestModel.Password);
         user.Avatar = avatarPath;
+        user.IsActive = true;
+        user.CreateAt = DateTime.Now;
+        user.UpdateAt = DateTime.Now;
 
         var userId = await _userRepository.SaveUser(user);
 
@@ -37,26 +39,31 @@ public class UserLogic : IUserLogic
         return await _userRepository.GetAllUsers();
     }
 
-    public async Task<IEnumerable<GetUserResponseModel>> GetUsersPortal()
+    public async Task<List<UserResponseModel>> GetUsersPortal()
     {
-        var usersResponse = new List<GetUserResponseModel>();
+        var usersResponse = new List<UserResponseModel>();
 
         var users = await _userRepository.GetAllUsers();
 
         foreach (var user in users)
         {
-            var userResponse = _mapper.Map<UserModel, GetUserResponseModel>(user);
+            var userResponse = _mapper.Map<UserModel, UserResponseModel>(user);
             usersResponse.Add(userResponse);
         }
 
         return usersResponse;
     }
 
-    public async Task<GetUserResponseModel> GetUserById(string userId)
+    public async Task<UserResponseModel> GetUserById(string userId)
     {
         var user = await _userRepository.GetUserById(userId);
 
-        var userResponse = _mapper.Map<UserModel, GetUserResponseModel>(user);
+        if(user == null)
+        {
+            throw new Exception($"User with Id {userId} does not exist");
+        }
+
+        var userResponse = _mapper.Map<UserModel, UserResponseModel>(user);
 
         return userResponse;
     }

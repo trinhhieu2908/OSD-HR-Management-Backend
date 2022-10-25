@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "srPFwcj2Qd6NSCgzvaODY6c7EN5ayAQb8ugsMK64htYzkjUJk6FwPcJaLMvj1Gpv7TGzHI2ApvZ2ORO9HATqHQ==",
+  "dgSpecHash": "mv6JedmIsGt613OY91TpPO5Zd1afC/w/+jRCJVhfKp+F7xDSqIVbIdDEILwbj2dQEyJ4Br5rtUJCUgY207G9zQ==",
   "success": true,
-  "projectFilePath": "C:\\DATA\\info\\DuAnCNTT2\\OSD_HR_Management_Backend\\OSD_HR_Management_Backend\\OSD_HR_Management_Backend.csproj",
+  "projectFilePath": "D:\\DATA\\DuAnCNTT2\\OSD_HR_Management_Backend\\OSD_HR_Management_Backend\\OSD_HR_Management_Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\amazon.lambda.apigatewayevents\\2.4.1\\amazon.lambda.apigatewayevents.2.4.1.nupkg.sha512",
     "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\amazon.lambda.applicationloadbalancerevents\\2.1.0\\amazon.lambda.applicationloadbalancerevents.2.1.0.nupkg.sha512",
@@ -67,10 +67,7 @@
     "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\system.security.permissions\\4.5.0\\system.security.permissions.4.5.0.nupkg.sha512",
     "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\system.security.principal.windows\\4.5.0\\system.security.principal.windows.4.5.0.nupkg.sha512",
     "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\system.text.encodings.web\\4.5.0\\system.text.encodings.web.4.5.0.nupkg.sha512",
-    "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\microsoft.netcore.app.runtime.linux-x64\\6.0.8\\microsoft.netcore.app.runtime.linux-x64.6.0.8.nupkg.sha512",
-    "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.linux-x64\\6.0.8\\microsoft.aspnetcore.app.runtime.linux-x64.6.0.8.nupkg.sha512",
-    "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.8\\microsoft.netcore.app.crossgen2.win-x64.6.0.8.nupkg.sha512",
-    "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\microsoft.netcore.app.host.linux-x64\\6.0.8\\microsoft.netcore.app.host.linux-x64.6.0.8.nupkg.sha512"
+    "C:\\Users\\hieu.trantrinh\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\6.0.10\\microsoft.netcore.app.crossgen2.win-x64.6.0.10.nupkg.sha512"
   ],
   "logs": []
 }

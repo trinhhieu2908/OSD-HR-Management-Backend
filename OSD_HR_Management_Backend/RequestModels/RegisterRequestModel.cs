@@ -17,8 +17,7 @@ public class RegisterRequestModel
 
     public IFormFile Avatar { get; set; } = null;
 
-    [Required]
-    public string JobTitle { get; set; }
+    public string JobTitle { get; set; } = string.Empty;
 
     [Required]
     public string Email { get; set; }

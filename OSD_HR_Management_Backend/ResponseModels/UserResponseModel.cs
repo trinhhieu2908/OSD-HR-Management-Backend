@@ -2,7 +2,7 @@
 
 #nullable disable
 
-public class GetUserResponseModel
+public class UserResponseModel
 {
     public string UserId { get; set; }
 

@@ -7,6 +7,6 @@ public interface IUserLogic
 {
     Task<string> SaveUser(RegisterRequestModel requestModel, string avatarPath);
     Task<IEnumerable<UserModel>> GetAllUsers();
-    Task<IEnumerable<GetUserResponseModel>> GetUsersPortal();
-    Task<GetUserResponseModel> GetUserById(string userId);
+    Task<List<UserResponseModel>> GetUsersPortal();
+    Task<UserResponseModel> GetUserById(string userId);
 }
