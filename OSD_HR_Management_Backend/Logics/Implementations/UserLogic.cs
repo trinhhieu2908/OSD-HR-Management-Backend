@@ -60,7 +60,7 @@ public class UserLogic : IUserLogic
 
         if(user == null)
         {
-            throw new Exception($"User with Id {userId} not exist");
+            throw new Exception($"User with Id {userId} does not exist");
         }
 
         var userResponse = _mapper.Map<UserModel, UserResponseModel>(user);
