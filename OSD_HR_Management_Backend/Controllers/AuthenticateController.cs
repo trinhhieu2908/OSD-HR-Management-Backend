@@ -75,7 +75,7 @@ public class AuthenticateController : Controller
     [Authorize(Policy = Policies.AdminOnly)]
     [HttpPost]
     [Route("register")]
-    public async Task<IActionResult> Register([FromBody] RegisterRequestModel requestModel)
+    public async Task<IActionResult> Register([FromForm] RegisterRequestModel requestModel)
     {
         var avatarPath = string.Empty;
         if (requestModel.Avatar != null)

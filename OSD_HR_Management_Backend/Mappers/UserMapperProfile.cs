@@ -9,6 +9,6 @@ public class UserMapperProfile : Profile
     public UserMapperProfile()
     {
         CreateMap<RegisterRequestModel, UserModel>();
-        CreateMap<UserModel, UserResponseModel>();
+        CreateMap<UserModel, GetUserResponseModel>();
     }
 }
